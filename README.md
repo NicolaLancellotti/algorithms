@@ -1,7 +1,8 @@
 # Algorithms & Data Structures  
 
 ## Algorithms
-- fibonacci O(log(n))
+- fibonacci1 O(n)
+- fibonacci2 O(log(n))
 
 ## Data Structures
 - Matrix
