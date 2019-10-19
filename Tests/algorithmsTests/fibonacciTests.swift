@@ -3,7 +3,7 @@ import XCTest
 
 final class fibonacciTests: XCTestCase {
   
-  func testFibonacci1() {
+  func test_fibonacci1() {
     XCTAssertEqual(fibonacci1(1), 1)
     XCTAssertEqual(fibonacci1(2), 1)
     XCTAssertEqual(fibonacci1(3), 2)
@@ -13,7 +13,7 @@ final class fibonacciTests: XCTestCase {
     XCTAssertEqual(fibonacci1(7), 13)
   }
   
-  func testFibonacci2() {
+  func test_fibonacci2() {
     XCTAssertEqual(fibonacci2(1), 1)
     XCTAssertEqual(fibonacci2(2), 1)
     XCTAssertEqual(fibonacci2(3), 2)
@@ -24,7 +24,7 @@ final class fibonacciTests: XCTestCase {
   }
   
   static var allTests = [
-    ("testFibonacci1", testFibonacci1),
-    ("testFibonacci2", testFibonacci2),
+    ("test_fibonacci1", test_fibonacci1),
+    ("test_fibonacci2", test_fibonacci2),
   ]
 }

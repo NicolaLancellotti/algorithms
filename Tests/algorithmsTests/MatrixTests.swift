@@ -3,7 +3,7 @@ import XCTest
 
 final class MatrixTests: XCTestCase {
   
-  func testInit() {
+  func test_init() {
     let matrix = Matrix(rows: 2, columns: 2, repeating: 1)
     XCTAssertEqual(matrix[0, 0], 1)
     XCTAssertEqual(matrix[0, 1], 1)
@@ -11,7 +11,7 @@ final class MatrixTests: XCTestCase {
     XCTAssertEqual(matrix[1, 1], 1)
   }
   
-  func testInitWithColumns() {
+  func test_InitWithColumns() {
     let matrix = Matrix(columns: 2, values: 1, 2, 3, 4)
     XCTAssertEqual(matrix[0, 0], 1)
     XCTAssertEqual(matrix[0, 1], 2)
@@ -19,19 +19,19 @@ final class MatrixTests: XCTestCase {
     XCTAssertEqual(matrix[1, 1], 4)
   }
   
-  func testIsSquare() {
+  func test_isSquare() {
     XCTAssertTrue(Matrix(rows: 2, columns: 2, repeating: 1).isSquare)
     XCTAssertFalse(Matrix(rows: 2, columns: 3, repeating: 1).isSquare)
     XCTAssertFalse(Matrix(rows: 2, columns: 3, repeating: 1).isSquare)
   }
   
-  func testMakeIdentity() {
+  func test_makeIdentity() {
     let matrix = Matrix<Int>.makeIdentity(2)
     XCTAssertEqual(matrix, Matrix(columns: 2, values: 1, 0, 0, 1))
     XCTAssertNotEqual(matrix, Matrix(columns: 2, values: 1, 1, 1, 1))
   }
   
-  func testProduct() {
+  func test_product() {
     let matrix1 = Matrix<Int>(columns: 2, values: 1, 2, 3, 4)
     let matrixResult1 = Matrix<Int>(columns: 2, values: 7, 10, 15, 22)
     XCTAssertEqual(matrix1 * matrix1, matrixResult1)
@@ -41,7 +41,7 @@ final class MatrixTests: XCTestCase {
     XCTAssertEqual(matrix1 * matrix2, matrixResult2)
   }
   
-  func testPower() {
+  func test_power() {
     let matrix = Matrix(columns: 2, values: 1, 2, 3, 4)
     XCTAssertEqual(matrix.power(0), Matrix.makeIdentity(2))
     XCTAssertEqual(matrix.power(1), matrix)
@@ -50,12 +50,12 @@ final class MatrixTests: XCTestCase {
   }
   
   static var allTests = [
-    ("testInit", testInit),
-    ("testInitWithColumns", testInitWithColumns),
-    ("testIsSquare", testIsSquare),
-    ("testMakeIdentity", testMakeIdentity),
-    ("testProduct", testProduct),
-    ("testPower", testPower),
+    ("test_init", test_init),
+    ("test_InitWithColumns", test_InitWithColumns),
+    ("test_isSquare", test_isSquare),
+    ("test_makeIdentity", test_makeIdentity),
+    ("test_product", test_product),
+    ("test_power", test_power),
   ]
   
 }
