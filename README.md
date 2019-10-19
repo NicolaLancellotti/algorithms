@@ -9,4 +9,4 @@
 - binary search O(log(n))
 
 ## Data Structures
-- Matrix
+- matrix
