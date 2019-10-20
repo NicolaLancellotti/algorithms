@@ -34,6 +34,7 @@ final class SortTests: XCTestCase {
   }
   
   func test_common(sort: (inout [Int]) -> Void) {
+    // Empty
     do {
       var collection:[Int] = []
       let sorted = collection.sorted()
@@ -41,6 +42,30 @@ final class SortTests: XCTestCase {
       XCTAssertEqual(collection, sorted)
     }
     
+    // 1 element
+    do {
+      var collection:[Int] = [1]
+      let sorted = collection.sorted()
+      sort(&collection)
+      XCTAssertEqual(collection, sorted)
+    }
+    
+    // 2 elements
+    do {
+      var collection:[Int] = [1, 2]
+      let sorted = collection.sorted()
+      sort(&collection)
+      XCTAssertEqual(collection, sorted)
+    }
+    
+    do {
+      var collection:[Int] = [2, 1]
+      let sorted = collection.sorted()
+      sort(&collection)
+      XCTAssertEqual(collection, sorted)
+    }
+    
+    // 3 elements
     do {
       var collection:[Int] = [1, 2, 3]
       let sorted = collection.sorted()
@@ -82,6 +107,45 @@ final class SortTests: XCTestCase {
       sort(&collection)
       XCTAssertEqual(collection, sorted)
     }
+    
+    // 4 elements
+    do {
+      var collection:[Int] = [1, 2, 3, 4]
+      let sorted = collection.sorted()
+      sort(&collection)
+      XCTAssertEqual(collection, sorted)
+    }
+    
+    do {
+      var collection:[Int] = [4, 3, 2, 1]
+      let sorted = collection.sorted()
+      sort(&collection)
+      XCTAssertEqual(collection, sorted)
+    }
+    
+    do {
+      var collection:[Int] = [4, 2, 1, 3]
+      let sorted = collection.sorted()
+      sort(&collection)
+      XCTAssertEqual(collection, sorted)
+    }
+    
+    // 5 elements
+    do {
+      var collection:[Int] = [5, 4, 3, 2, 1]
+      let sorted = collection.sorted()
+      sort(&collection)
+      XCTAssertEqual(collection, sorted)
+    }
+    
+    // 6 elements
+    do {
+      var collection:[Int] = [6, 5, 4, 3, 2, 1]
+      let sorted = collection.sorted()
+      sort(&collection)
+      XCTAssertEqual(collection, sorted)
+    }
+
   }
   
   static var allTests = [
