@@ -66,4 +66,46 @@ enum Sort {
       }
   }
   
+  /// - Complexity: O(n^2)
+  public static func heapSort<C>(_ coll: inout C) where
+    C: RandomAccessCollection,
+    C: MutableCollection,
+    C.Element: Comparable,
+    C.Index == Int {
+      
+      var heapCount = coll.count
+      
+      func heapify(index: Int) {
+        let left = index << 1 + 1 // index * 2 + 1
+        let right = index << 1 + 2 // index * 2 + 2
+        var maxIndex = left < heapCount && coll[left] > coll[index] ? left : index
+        if right < heapCount && coll[right] > coll[maxIndex] {
+          maxIndex = right
+        }
+        
+        if maxIndex != index {
+          coll.swapAt(index, maxIndex)
+          heapify(index: maxIndex)
+        }
+      }
+      
+      func buildHeap() {
+        // heapCount / 2 internal nodes
+        for index in stride(from: heapCount / 2 - 1, through: 0, by: -1) {
+          heapify(index: index)
+        }
+      }
+      
+      func sort() {
+        for _ in stride(from: 0, to: coll.count - 1, by: 1) {
+          heapCount -= 1
+          coll.swapAt(0, heapCount)
+          heapify(index: 0)
+        }
+      }
+      
+      buildHeap()
+      sort()
+  }
+  
 }

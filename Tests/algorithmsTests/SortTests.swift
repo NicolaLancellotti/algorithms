@@ -21,6 +21,12 @@ final class SortTests: XCTestCase {
     }
   }
   
+  func test_heapSort() {
+    test_common { collection in
+      Sort.heapSort(&collection)
+    }
+  }
+  
   func test_common(sort: (inout [Int]) -> Void) {
     do {
       var collection:[Int] = []
@@ -76,5 +82,6 @@ final class SortTests: XCTestCase {
     ("test_selectionSort", test_selectionSort),
     ("test_insertionSort", test_insertionSort),
     ("test_bubbleSort", test_bubbleSort),
+    ("test_heapSort", test_heapSort),
   ]
 }
