@@ -11,6 +11,7 @@
 - insertion sort O(n^2)
 - bubble sort Θ(n^2)
 - heap sort O(n^2)
+- merge sort Θ(nlog(n))
 
 ### Other
 - fibonacci1 O(n)
