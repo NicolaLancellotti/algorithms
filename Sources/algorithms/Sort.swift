@@ -66,7 +66,7 @@ enum Sort {
       }
   }
   
-  /// - Complexity: O(n^2)
+  /// - Complexity: O(nlog(n))
   public static func heapSort<C>(_ coll: inout C) where
     C: RandomAccessCollection,
     C: MutableCollection,

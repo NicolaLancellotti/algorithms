@@ -10,7 +10,7 @@
 - selection sort Θ(n^2)
 - insertion sort O(n^2)
 - bubble sort Θ(n^2)
-- heap sort O(n^2)
+- heap sort O(nlog(n))
 - merge sort Θ(nlog(n))
 
 ### Other
