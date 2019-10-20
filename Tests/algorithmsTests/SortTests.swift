@@ -27,6 +27,12 @@ final class SortTests: XCTestCase {
     }
   }
   
+  func test_mergeSort() {
+    test_common { collection in
+      Sort.mergeSort(&collection)
+    }
+  }
+  
   func test_common(sort: (inout [Int]) -> Void) {
     do {
       var collection:[Int] = []
@@ -83,5 +89,6 @@ final class SortTests: XCTestCase {
     ("test_insertionSort", test_insertionSort),
     ("test_bubbleSort", test_bubbleSort),
     ("test_heapSort", test_heapSort),
+    ("test_mergeSort", test_mergeSort),
   ]
 }
