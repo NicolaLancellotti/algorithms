@@ -196,4 +196,26 @@ enum Sort {
       sort(start: coll.startIndex, end: coll.index(before: coll.endIndex))
   }
   
+  /// - Complexity: O(n*k)  where k = max value - min value + 1
+  public static func integerSort<C>(_ coll: inout C) where
+    C: RandomAccessCollection,
+    C: MutableCollection,
+    C.Element == Int {
+      guard let max = coll.max(), let min = coll.min(), max != min else {
+        return
+      }
+      let rangeLength = max - min + 1
+      var counter = [Int](repeating: 0, count: rangeLength)
+      coll.forEach { counter[$0 - min] += 1 }
+      
+      var index = coll.startIndex
+      for i in 0..<rangeLength {
+        while counter[i] > 0 {
+          coll[index] = i + min
+          counter[i] -= 1
+          coll.formIndex(after: &index)
+        }
+      }
+  }
+  
 }

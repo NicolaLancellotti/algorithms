@@ -39,6 +39,12 @@ final class SortTests: XCTestCase {
     }
   }
   
+  func test_integerSort() {
+    test_common { collection in
+      Sort.integerSort(&collection)
+    }
+  }
+  
   func test_common(sort: (inout [Int]) -> Void) {
     // Empty
     do {
@@ -160,5 +166,7 @@ final class SortTests: XCTestCase {
     ("test_bubbleSort", test_bubbleSort),
     ("test_heapSort", test_heapSort),
     ("test_mergeSort", test_mergeSort),
+    ("test_quickSort", test_quickSort),
+    ("test_integerSort", test_integerSort),
   ]
 }
