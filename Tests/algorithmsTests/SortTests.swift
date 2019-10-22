@@ -33,6 +33,12 @@ final class SortTests: XCTestCase {
     }
   }
   
+  func test_quickSort() {
+    test_common { collection in
+      Sort.quickSort(&collection)
+    }
+  }
+  
   func test_common(sort: (inout [Int]) -> Void) {
     // Empty
     do {

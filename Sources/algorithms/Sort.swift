@@ -66,7 +66,7 @@ enum Sort {
       }
   }
   
-  /// - Complexity: O(nlog(n))
+  /// - Complexity: O(n log(n))
   public static func heapSort<C>(_ coll: inout C) where
     C: RandomAccessCollection,
     C: MutableCollection,
@@ -108,13 +108,13 @@ enum Sort {
       sort()
   }
   
-  /// - Complexity: Θ(nlog(n))
+  /// - Complexity: Θ(n log(n))
   public static func mergeSort<C>(_ coll: inout C) where
     C: RandomAccessCollection,
     C: MutableCollection,
     C.Element: Comparable {
       
-      func merge(_ coll: inout C, start: C.Index, middle: C.Index, end: C.Index) {
+      func merge(start: C.Index, middle: C.Index, end: C.Index) {
         var current1 = start, current2 = coll.index(after: middle)
         var tmp = [C.Element]()
         tmp.reserveCapacity(coll.distance(from: start, to: end) + 1)
@@ -143,18 +143,57 @@ enum Sort {
         }
       }
       
-      func sort(_ coll: inout C, start: C.Index, end: C.Index) {
+      func sort(start: C.Index, end: C.Index) {
         guard start < end else {
           return
         }
         
         let middle = coll.index(start, offsetBy: coll.distance(from: start, to: end) / 2)
-        sort(&coll, start: start, end: middle)
-        sort(&coll, start: coll.index(after: middle), end: end)
-        merge(&coll, start: start, middle: middle, end: end)
+        sort(start: start, end: middle)
+        sort(start: coll.index(after: middle), end: end)
+        merge(start: start, middle: middle, end: end)
       }
       
-      sort(&coll, start: coll.startIndex, end: coll.index(before: coll.endIndex))
+      sort(start: coll.startIndex, end: coll.index(before: coll.endIndex))
+  }
+  
+  /// - Complexity: O(n^2), average case: O(n log(n))
+  public static func quickSort<C>(_ coll: inout C) where
+    C: RandomAccessCollection,
+    C: MutableCollection,
+    C.Element: Comparable {
+      
+      func partition(start: C.Index, end: C.Index) -> C.Index {
+        let pivot = coll[start]
+        var inf = start, sup = end
+        
+        while inf < sup {
+          while inf < end && coll[inf] <= pivot {
+            coll.formIndex(after: &inf)
+          }
+          
+          while coll[sup] > pivot {
+            coll.formIndex(before: &sup)
+          }
+          
+          if inf < sup {
+            coll.swapAt(inf, sup)
+          }
+        }
+        coll.swapAt(start, sup)
+        return sup
+      }
+      
+      func sort(start: C.Index, end: C.Index) {
+        guard start < end else {
+          return
+        }
+        let middle =  partition(start: start, end: end)
+        sort(start: start, end: coll.index(before: middle))
+        sort(start: coll.index(after: middle), end: end)
+      }
+      
+      sort(start: coll.startIndex, end: coll.index(before: coll.endIndex))
   }
   
 }
