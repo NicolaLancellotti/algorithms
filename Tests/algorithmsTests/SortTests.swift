@@ -157,6 +157,13 @@ final class SortTests: XCTestCase {
       sort(&collection)
       XCTAssertEqual(collection, sorted)
     }
+    
+    do {
+      var collection:[Int] = [6, 6, 4, 6, 2, 6]
+      let sorted = collection.sorted()
+      sort(&collection)
+      XCTAssertEqual(collection, sorted)
+    }
 
   }
   
