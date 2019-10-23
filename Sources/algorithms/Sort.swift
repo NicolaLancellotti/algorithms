@@ -42,7 +42,7 @@ extension Sort {
   
 }
 
-//MARK: - Sort
+//MARK: - Insertion Sort
 
 extension Sort {
   
@@ -75,7 +75,7 @@ extension Sort {
   
 }
 
-//MARK: - Sort
+//MARK: - Bubble Sort
 
 extension Sort {
   
@@ -111,7 +111,7 @@ extension Sort {
   
 }
 
-//MARK: - Sort
+//MARK: - Heap Sort
 
 extension Sort {
   
@@ -172,7 +172,7 @@ extension Sort {
   
 }
 
-//MARK: - Sort
+//MARK: - Merge Sort
 
 extension Sort {
   
@@ -236,7 +236,7 @@ extension Sort {
   
 }
 
-//MARK: - Sort
+//MARK: - Quick Sort
 
 private extension ComparisonResult {
   var orderedAscendingOrSame: Bool {
@@ -303,7 +303,7 @@ extension Sort {
   
 }
 
-//MARK: - Sort
+//MARK: - Integer Sort
 
 extension Sort {
   
@@ -324,6 +324,40 @@ extension Sort {
         while counter[i] > 0 {
           coll[index] = i + min
           counter[i] -= 1
+          coll.formIndex(after: &index)
+        }
+      }
+  }
+  
+  /// - Complexity: O(n*k)  where k = max value - min value + 1
+  public static func integerSort<C>(
+    _ coll: inout C,
+    toInteger: (C.Element) throws -> Int) rethrows where
+    C: RandomAccessCollection,
+    C: MutableCollection {
+      
+      guard
+        let maxValue = try coll.max (by: { try toInteger($0) < toInteger($1)}),
+        let minValue = try coll.min (by: { try toInteger($0) < toInteger($1)})
+        else {
+          return
+      }
+      
+      let max = try toInteger(maxValue)
+      let min = try toInteger(minValue)
+      
+      guard max != min else {
+        return
+      }
+      
+      let rangeLength = max - min + 1
+      var counter = [[C.Element]](repeating: [C.Element](), count: rangeLength)
+      try coll.forEach { counter[try toInteger($0) - min].append($0) }
+      
+      var index = coll.startIndex
+      for i in 0..<rangeLength {
+        for elem in counter[i] {
+          coll[index] = elem
           coll.formIndex(after: &index)
         }
       }

@@ -45,6 +45,42 @@ final class SortTests: XCTestCase {
     }
   }
   
+  func test_integerSort2() {
+    struct T {
+      let string: String
+      let int: Int
+    }
+    
+    var array = [
+      T(string: "c", int: 3),
+      T(string: "b", int: 2),
+      T(string: "a", int: 1),
+      T(string: "D", int: 4),
+      T(string: "d", int: 4),
+      T(string: "A", int: 1)
+    ]
+    
+    Sort.integerSort(&array) { $0.int }
+      
+    XCTAssertEqual(array[0].int, 1)
+    XCTAssertEqual(array[0].string, "a")
+    
+    XCTAssertEqual(array[1].int, 1)
+    XCTAssertEqual(array[1].string, "A")
+    
+    XCTAssertEqual(array[2].int, 2)
+    XCTAssertEqual(array[2].string, "b")
+    
+    XCTAssertEqual(array[3].int, 3)
+    XCTAssertEqual(array[3].string, "c")
+    
+    XCTAssertEqual(array[4].int, 4)
+    XCTAssertEqual(array[4].string, "D")
+    
+    XCTAssertEqual(array[5].int, 4)
+    XCTAssertEqual(array[5].string, "d")
+  }
+  
   func test_common(sort: (inout [Int]) -> Void) {
     // Empty
     do {
