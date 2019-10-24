@@ -121,11 +121,11 @@ extension Sort {
     by areInIncreasingOrder: (C.Element, C.Element) throws -> Bool) rethrows where
     C: RandomAccessCollection,
     C: MutableCollection,
-    C.Index == Int {
+    C.Index: FixedWidthInteger {
       
-      var heapCount = coll.count
+      var heapCount = C.Index(coll.count)
       
-      func heapify(index: Int) throws {
+      func heapify(index: C.Index) throws {
         let left = index << 1 + 1 // index * 2 + 1
         let right = index << 1 + 2 // index * 2 + 2
         
@@ -145,14 +145,14 @@ extension Sort {
       func buildHeap() throws {
         // heapCount / 2 internal nodes
         for index in stride(from: heapCount / 2 - 1, through: 0, by: -1) {
-          try heapify(index: index)
+          try heapify(index: C.Index(index))
         }
       }
       
       func sort() throws {
         for _ in stride(from: 0, to: coll.count - 1, by: 1) {
           heapCount -= 1
-          coll.swapAt(0, heapCount)
+          coll.swapAt(C.Index.zero, heapCount)
           try heapify(index: 0)
         }
       }
@@ -166,7 +166,7 @@ extension Sort {
     C: RandomAccessCollection,
     C: MutableCollection,
     C.Element: Comparable,
-    C.Index == Int {
+    C.Index: FixedWidthInteger {
       heapSort(&coll) { $0 < $1 }
   }
   
@@ -311,21 +311,23 @@ extension Sort {
   public static func integerSort<C>(_ coll: inout C) where
     C: RandomAccessCollection,
     C: MutableCollection,
-    C.Element == Int {
+    C.Element: BinaryInteger {
       guard let max = coll.max(), let min = coll.min(), max != min else {
         return
       }
       let rangeLength = max - min + 1
-      var counter = [Int](repeating: 0, count: rangeLength)
-      coll.forEach { counter[$0 - min] += 1 }
+      var counter = [C.Element](repeating: 0, count: Int(rangeLength))
+      coll.forEach { counter[Int($0 - min)] += 1 }
       
       var index = coll.startIndex
-      for i in 0..<rangeLength {
-        while counter[i] > 0 {
+      var i = C.Element.zero
+      while i < rangeLength {
+        while counter[Int(i)] > 0 {
           coll[index] = i + min
-          counter[i] -= 1
+          counter[Int(i)] -= 1
           coll.formIndex(after: &index)
         }
+        i += 1
       }
   }
   
