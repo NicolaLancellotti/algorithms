@@ -4,43 +4,43 @@ import XCTest
 final class SortTests: XCTestCase {
   
   func test_selectionSort() {
-    test_common { collection in
+    test_shared { collection in
       Sort.selectionSort(&collection)
     }
   }
   
   func test_insertionSort() {
-    test_common { collection in
+    test_shared { collection in
       Sort.insertionSort(&collection)
     }
   }
   
   func test_bubbleSort() {
-    test_common { collection in
+    test_shared { collection in
       Sort.bubbleSort(&collection)
     }
   }
   
   func test_heapSort() {
-    test_common { collection in
+    test_shared { collection in
       Sort.heapSort(&collection)
     }
   }
   
   func test_mergeSort() {
-    test_common { collection in
+    test_shared { collection in
       Sort.mergeSort(&collection)
     }
   }
   
   func test_quickSort() {
-    test_common { collection in
+    test_shared { collection in
       Sort.quickSort(&collection)
     }
   }
   
   func test_integerSort() {
-    test_common { collection in
+    test_shared { collection in
       Sort.integerSort(&collection)
     }
   }
@@ -61,7 +61,7 @@ final class SortTests: XCTestCase {
     ]
     
     Sort.integerSort(&array) { $0.int }
-      
+    
     XCTAssertEqual(array[0].int, 1)
     XCTAssertEqual(array[0].string, "a")
     
@@ -81,7 +81,20 @@ final class SortTests: XCTestCase {
     XCTAssertEqual(array[5].string, "d")
   }
   
-  func test_common(sort: (inout [Int]) -> Void) {
+  static var allTests = [
+    ("test_selectionSort", test_selectionSort),
+    ("test_insertionSort", test_insertionSort),
+    ("test_bubbleSort", test_bubbleSort),
+    ("test_heapSort", test_heapSort),
+    ("test_mergeSort", test_mergeSort),
+    ("test_quickSort", test_quickSort),
+    ("test_integerSort", test_integerSort),
+  ]
+}
+
+extension SortTests {
+  
+  func test_shared(sort: (inout [Int]) -> Void) {
     // Empty
     do {
       var collection:[Int] = []
@@ -202,22 +215,13 @@ final class SortTests: XCTestCase {
     }
     
     // Negative numbers
-      do {
-        var collection:[Int] = [-1, -3, -9, 10, 2, -1]
-        let sorted = collection.sorted()
-        sort(&collection)
-        XCTAssertEqual(collection, sorted)
-      }
-
+    do {
+      var collection:[Int] = [-1, -3, -9, 10, 2, -1]
+      let sorted = collection.sorted()
+      sort(&collection)
+      XCTAssertEqual(collection, sorted)
+    }
+    
   }
   
-  static var allTests = [
-    ("test_selectionSort", test_selectionSort),
-    ("test_insertionSort", test_insertionSort),
-    ("test_bubbleSort", test_bubbleSort),
-    ("test_heapSort", test_heapSort),
-    ("test_mergeSort", test_mergeSort),
-    ("test_quickSort", test_quickSort),
-    ("test_integerSort", test_integerSort),
-  ]
 }
