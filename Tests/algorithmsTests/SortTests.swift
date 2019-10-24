@@ -200,6 +200,14 @@ final class SortTests: XCTestCase {
       sort(&collection)
       XCTAssertEqual(collection, sorted)
     }
+    
+    // Negative numbers
+      do {
+        var collection:[Int] = [-1, -3, -9, 10, 2, -1]
+        let sorted = collection.sorted()
+        sort(&collection)
+        XCTAssertEqual(collection, sorted)
+      }
 
   }
   
