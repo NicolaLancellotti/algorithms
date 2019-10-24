@@ -20,4 +20,5 @@
 - fibonacci2 O(log(n))
 
 ## Data Structures
-- matrix
+- Matrix
+- MinHeap
