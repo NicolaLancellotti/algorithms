@@ -39,6 +39,12 @@ final class SortTests: XCTestCase {
     }
   }
   
+  func test_countingSort() {
+     test_shared { collection in
+      Sort.countingSort(&collection) { $0 }
+     }
+   }
+  
   func test_integerSort() {
     test_shared { collection in
       Sort.integerSort(&collection)
@@ -89,6 +95,7 @@ final class SortTests: XCTestCase {
     ("test_mergeSort", test_mergeSort),
     ("test_quickSort", test_quickSort),
     ("test_integerSort", test_integerSort),
+    ("test_countingSort", test_countingSort),
   ]
 }
 

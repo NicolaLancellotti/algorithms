@@ -366,3 +366,63 @@ extension Sort {
   }
   
 }
+
+//MARK: - Counting Sort
+
+extension Sort {
+  
+  /// - Complexity: O(max(n, k))  where k = max value - min value + 1
+  public static func countingSort<C>(
+    _ coll: inout C,
+    toInteger: (C.Element) throws -> Int) rethrows where
+    C: RandomAccessCollection,
+    C: MutableCollection {
+      
+      guard let (min, max) = try Sort.minMax(&coll, toInteger: toInteger), max != min else {
+        return
+      }
+      
+      var counter = [Int](repeating: 0, count: max - min + 1)
+      try coll.forEach { counter[try toInteger($0) - min] += 1 }
+      
+      for i in stride(from: 1, to: counter.count, by: 1) {
+        counter[i] += counter[i - 1]
+      }
+      
+      let tmpColl = try [C.Element](unsafeUninitializedCapacity: coll.count) { (buffer, count) in
+        var index = coll.index(before: coll.endIndex)
+        while index >= coll.startIndex  {
+          let value = coll[index]
+          let intValue = try toInteger(value) - min
+          counter[intValue] -= 1
+          buffer[counter[intValue]] = value
+          count += 1
+          coll.formIndex(before: &index)
+        }
+      }
+      
+      for (index, elem) in zip(coll.indices, tmpColl) {
+        coll[index] = elem
+      }
+  }
+  
+}
+
+//MARK: - Utility
+
+extension Sort {
+  
+  private static func minMax<C: Collection>(
+    _ coll: inout C,
+    toInteger: (C.Element) throws -> Int) rethrows -> (min: Int, max: Int)?{
+    
+    guard
+      let maxValue = try coll.max (by: { try toInteger($0) < toInteger($1)}),
+      let minValue = try coll.min (by: { try toInteger($0) < toInteger($1)})
+      else {
+        return nil
+    }
+    return (min: try toInteger(minValue), max: try toInteger(maxValue))
+  }
+  
+}
