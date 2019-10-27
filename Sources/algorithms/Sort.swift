@@ -307,7 +307,7 @@ extension Sort {
 
 extension Sort {
   
-  /// - Complexity: O(n*k)  where k = max value - min value + 1
+  /// - Complexity: O(max(n, k))  where k = max value - min value + 1
   public static func integerSort<C>(_ coll: inout C) where
     C: RandomAccessCollection,
     C: MutableCollection,
@@ -315,50 +315,36 @@ extension Sort {
       guard let max = coll.max(), let min = coll.min(), max != min else {
         return
       }
-      let rangeLength = max - min + 1
-      var counter = [C.Element](repeating: 0, count: Int(rangeLength))
+      
+      var counter = [C.Element](repeating: 0, count: Int(max - min + 1))
       coll.forEach { counter[Int($0 - min)] += 1 }
       
       var index = coll.startIndex
-      var i = C.Element.zero
-      while i < rangeLength {
-        while counter[Int(i)] > 0 {
-          coll[index] = i + min
-          counter[Int(i)] -= 1
+      for (i, count) in counter.enumerated() {
+        for _ in stride(from: count, to: 0, by: -1) {
+          coll[index] = C.Element(i) + min
           coll.formIndex(after: &index)
         }
-        i += 1
       }
   }
   
-  /// - Complexity: O(n*k)  where k = max value - min value + 1
+  /// - Complexity: O(max(n, k))  where k = max value - min value + 1
   public static func integerSort<C>(
     _ coll: inout C,
     toInteger: (C.Element) throws -> Int) rethrows where
     C: RandomAccessCollection,
     C: MutableCollection {
       
-      guard
-        let maxValue = try coll.max (by: { try toInteger($0) < toInteger($1)}),
-        let minValue = try coll.min (by: { try toInteger($0) < toInteger($1)})
-        else {
-          return
-      }
-      
-      let max = try toInteger(maxValue)
-      let min = try toInteger(minValue)
-      
-      guard max != min else {
+      guard let (min, max) = try Sort.minMax(&coll, toInteger: toInteger), max != min else {
         return
       }
       
-      let rangeLength = max - min + 1
-      var counter = [[C.Element]](repeating: [C.Element](), count: rangeLength)
+      var counter = [[C.Element]](repeating: [C.Element](), count: max - min + 1)
       try coll.forEach { counter[try toInteger($0) - min].append($0) }
       
       var index = coll.startIndex
-      for i in 0..<rangeLength {
-        for elem in counter[i] {
+      for list in counter {
+        for elem in list {
           coll[index] = elem
           coll.formIndex(after: &index)
         }
@@ -404,6 +390,13 @@ extension Sort {
       for (index, elem) in zip(coll.indices, tmpColl) {
         coll[index] = elem
       }
+  }
+  
+  public static func countingSort<C>(_ coll: inout C) where
+    C: RandomAccessCollection,
+    C: MutableCollection,
+    C.Element: BinaryInteger {
+      countingSort(&coll) { Int($0) }
   }
   
 }

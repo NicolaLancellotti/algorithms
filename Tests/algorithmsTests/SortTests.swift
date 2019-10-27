@@ -41,7 +41,7 @@ final class SortTests: XCTestCase {
   
   func test_countingSort() {
      test_shared { collection in
-      Sort.countingSort(&collection) { $0 }
+      Sort.countingSort(&collection)
      }
    }
   

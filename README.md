@@ -13,7 +13,7 @@
 - heap sort O(n log(n))
 - merge sort Θ(n log(n))
 - quick sort O(n^2)
-- integer sort O(n*k)  where k = max value - min value + 1
+- integer sort O(max(n, k))  where k = max value - min value + 1
 - counting sort O(max(n, k))  where k = max value - min value + 1
 
 ### Other
