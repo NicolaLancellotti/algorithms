@@ -25,3 +25,11 @@ extension Stack {
   }
   
 }
+
+extension Stack: Equatable where Element: Equatable {
+  
+}
+
+extension Stack: Hashable where Element: Hashable {
+
+}
