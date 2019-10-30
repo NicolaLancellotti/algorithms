@@ -19,6 +19,7 @@
 ### Other
 - fibonacci1 O(n)
 - fibonacci2 O(log(n))
+- power *base^exp* with the repeated squares method O(log(exp))
 
 ## Data Structures
 - Matrix
