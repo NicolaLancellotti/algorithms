@@ -94,11 +94,11 @@ extension Matrix where T: Numeric {
 }
 
 extension Matrix: Equatable where T: Equatable {
-  
-  public static func == (lhs: Self, rhs: Self) -> Bool {
-    lhs.grid == rhs.grid
-  }
-  
+
+}
+
+extension Matrix: Hashable where T: Hashable {
+
 }
 
 extension Matrix: CustomDebugStringConvertible {

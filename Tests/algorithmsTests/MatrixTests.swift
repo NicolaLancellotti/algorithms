@@ -11,7 +11,7 @@ final class MatrixTests: XCTestCase {
     XCTAssertEqual(matrix[1, 1], 1)
   }
   
-  func test_InitWithColumns() {
+  func test_initWithColumns() {
     let matrix = Matrix(columns: 2, values: 1, 2, 3, 4)
     XCTAssertEqual(matrix[0, 0], 1)
     XCTAssertEqual(matrix[0, 1], 2)
@@ -49,13 +49,25 @@ final class MatrixTests: XCTestCase {
     XCTAssertEqual(matrix.power(3), matrix * matrix * matrix)
   }
   
+  func test_comparable() {
+    let matrix = Matrix(columns: 2, values: 1, 2, 3, 4)
+    XCTAssertEqual(matrix, matrix)
+  }
+  
+  func test_hashable() {
+    let matrix = Matrix(columns: 2, values: 1, 2, 3, 4)
+    XCTAssertEqual(matrix.hashValue, matrix.hashValue)
+  }
+  
   static var allTests = [
     ("test_init", test_init),
-    ("test_InitWithColumns", test_InitWithColumns),
+    ("test_initWithColumns", test_initWithColumns),
     ("test_isSquare", test_isSquare),
     ("test_makeIdentity", test_makeIdentity),
     ("test_product", test_product),
     ("test_power", test_power),
+    ("test_comparable", test_comparable),
+    ("test_hashable", test_hashable),
   ]
   
 }
