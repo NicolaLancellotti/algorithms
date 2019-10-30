@@ -7,7 +7,7 @@ final class StackTests: XCTestCase {
     var stack = Stack<Int>()
     XCTAssertTrue(stack.isEmpty);
     XCTAssertEqual(stack.pop(), nil)
-  
+    
     stack.push(1)
     XCTAssertFalse(stack.isEmpty);
     
@@ -49,21 +49,10 @@ final class StackTests: XCTestCase {
   }
   
   func test_hashable() {
-    do {
-      var stack = Stack<Int>()
-      stack.push(1)
-      stack.push(2)
-      XCTAssertEqual(stack.hashValue, stack.hashValue)
-    }
-    
-    do {
-      var stack1 = Stack<Int>()
-      stack1.push(1)
-      stack1.push(2)
-      let stack2 = stack1
-      stack1.pop()
-      XCTAssertNotEqual(stack1.hashValue, stack2.hashValue)
-    }
+    var stack = Stack<Int>()
+    stack.push(1)
+    stack.push(2)
+    XCTAssertEqual(stack.hashValue, stack.hashValue)
   }
   
   static var allTests = [
