@@ -50,8 +50,17 @@ final class MatrixTests: XCTestCase {
   }
   
   func test_comparable() {
-    let matrix = Matrix(columns: 2, values: 1, 2, 3, 4)
-    XCTAssertEqual(matrix, matrix)
+    do {
+      let matrix = Matrix(columns: 2, values: 1, 2, 3, 4)
+      XCTAssertEqual(matrix, matrix)
+    }
+    
+    do {
+      let matrix = Matrix(columns: 2, values: 1, 2, 3, 4)
+      var matrix1 = matrix
+      matrix1[0, 0] = 9
+      XCTAssertNotEqual(matrix, matrix1)
+    }
   }
   
   func test_hashable() {
