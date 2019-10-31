@@ -22,8 +22,8 @@
 - power *base^exp* with the repeated squares method O(log(exp))
 
 ## Data Structures
-- FixedLeghtArray 
-- FixedLeghtQueue
+- FixedLengthArray 
+- FixedLengthQueue
 - QueueUsingStacks
 - Stack
 - MinHeap

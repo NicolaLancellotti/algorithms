@@ -1,10 +1,10 @@
 import XCTest
 @testable import algorithms
 
-final class FixedLeghtArrayTests: XCTestCase {
+final class FixedLengthArrayTests: XCTestCase {
   
   func test_init() {
-    let array: FixedLeghtArray = [1, 2, 3]
+    let array: FixedLengthArray = [1, 2, 3]
     XCTAssertEqual(array.count, 3)
     XCTAssertEqual(array[0], 1)
     XCTAssertEqual(array[1], 2)
@@ -12,7 +12,7 @@ final class FixedLeghtArrayTests: XCTestCase {
   }
   
   func test_initRepeating() {
-    let array = FixedLeghtArray(repeating: 1, count: 3)
+    let array = FixedLengthArray(repeating: 1, count: 3)
     XCTAssertEqual(array.count, 3)
     XCTAssertEqual(array[0], 1)
     XCTAssertEqual(array[1], 1)
@@ -20,12 +20,12 @@ final class FixedLeghtArrayTests: XCTestCase {
   }
   
   func test_collection() {
-    let array: FixedLeghtArray = [1, 2, 3]
+    let array: FixedLengthArray = [1, 2, 3]
     XCTAssertEqual(array.reduce(0, +), 6)
   }
   
   func test_copy() {
-    let array1: FixedLeghtArray = [1, 2, 3]
+    let array1: FixedLengthArray = [1, 2, 3]
     var array2 = array1
     array2[0] = -1;
     
@@ -55,7 +55,7 @@ final class FixedLeghtArrayTests: XCTestCase {
     
     let exp = self.expectation(description: "test_deinitialize_expectation")
     do {
-      let _: FixedLeghtArray = [
+      let _: FixedLengthArray = [
         A(handler: {exp.fulfill()})
       ]
     }
@@ -65,12 +65,12 @@ final class FixedLeghtArrayTests: XCTestCase {
   
   func test_equatable() {
     do {
-      let array: FixedLeghtArray = [1, 2, 3]
+      let array: FixedLengthArray = [1, 2, 3]
       XCTAssertEqual(array, array)
     }
     
     do {
-      let array: FixedLeghtArray = [1, 2, 3]
+      let array: FixedLengthArray = [1, 2, 3]
       var array1 = array
       array1[0] = -1
       XCTAssertNotEqual(array, array1)
@@ -79,20 +79,20 @@ final class FixedLeghtArrayTests: XCTestCase {
   
   func test_comparable() {
     do {
-      let array: FixedLeghtArray = [1, 2, 3]
+      let array: FixedLengthArray = [1, 2, 3]
       XCTAssertTrue(array <= array)
     }
     
     do {
-      let array1: FixedLeghtArray = [1, 2, 3]
-      let array2: FixedLeghtArray = [3, 2, 3]
+      let array1: FixedLengthArray = [1, 2, 3]
+      let array2: FixedLengthArray = [3, 2, 3]
       XCTAssertTrue(array1 <= array2)
       XCTAssertTrue(array1 < array2)
     }
   }
   
   func test_hashable() {
-    let array: FixedLeghtArray = [1, 2, 3]
+    let array: FixedLengthArray = [1, 2, 3]
     XCTAssertEqual(array.hashValue, array.hashValue)
   }
   

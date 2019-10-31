@@ -1,33 +1,33 @@
 import Foundation
 
-public struct FixedLeghtQueue<Element> {
+public struct FixedLengthQueue<Element> {
   
-  private var buffer: FixedLeghtArray<Element?>
+  private var buffer: FixedLengthArray<Element?>
   private var headIndex = 0
   private var tailIndex = 0
   private var count = 0
   
 }
 
-extension FixedLeghtQueue {
+extension FixedLengthQueue {
   
   init(count: Int) {
     precondition(count > 0, "count must be greater than 0")
-    buffer = FixedLeghtArray<Element?>(repeating: nil, count: count)
+    buffer = FixedLengthArray<Element?>(repeating: nil, count: count)
   }
   
 }
 
-extension FixedLeghtQueue {
+extension FixedLengthQueue {
   
-  public enum FixedLeghtQueueError: Error {
+  public enum FixedLengthQueueError: Error {
     case full
   }
   
   /// - Complexity: Θ(1)
   public mutating func enqueue(_ newElement: Element) throws {
     if isFull {
-      throw FixedLeghtQueueError.full
+      throw FixedLengthQueueError.full
     }
     count += 1
     buffer[tailIndex] = newElement
@@ -59,7 +59,7 @@ extension FixedLeghtQueue {
   
 }
 
-extension FixedLeghtQueue {
+extension FixedLengthQueue {
   
   private func nextIndex(_ index: Int) -> Int {
     return (index + 1) % buffer.count

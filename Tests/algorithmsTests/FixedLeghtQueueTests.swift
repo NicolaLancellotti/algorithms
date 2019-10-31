@@ -1,10 +1,10 @@
 import XCTest
 @testable import algorithms
 
-final class FixedLeghtQueueTests: XCTestCase {
+final class FixedLengthQueueTests: XCTestCase {
   
-  func test_fixedLeghtQueue() {
-    var queue = FixedLeghtQueue<Int>(count: 2)
+  func test_fixedLengthQueue() {
+    var queue = FixedLengthQueue<Int>(count: 2)
     XCTAssertTrue(queue.isEmpty)
     XCTAssertFalse(queue.isFull)
     
@@ -44,7 +44,7 @@ final class FixedLeghtQueueTests: XCTestCase {
   }
   
   static var allTests = [
-    ("test_fixedLeghtQueue", test_fixedLeghtQueue),
+    ("test_fixedLengthQueue", test_fixedLengthQueue),
   ]
   
 }

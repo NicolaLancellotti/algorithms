@@ -3,7 +3,7 @@ import XCTest
 
 final class QueueUsingStacksTests: XCTestCase {
   
-  func test_fixedLeghtQueue() {
+  func test_fixedLengthQueue() {
     var queue = QueueUsingStacks<Int>()
     XCTAssertTrue(queue.isEmpty)
     
@@ -38,7 +38,7 @@ final class QueueUsingStacksTests: XCTestCase {
   }
   
   static var allTests = [
-    ("test_fixedLeghtQueue", test_fixedLeghtQueue),
+    ("test_fixedLengthQueue", test_fixedLengthQueue),
   ]
   
 }

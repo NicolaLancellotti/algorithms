@@ -1,12 +1,12 @@
 import Foundation
 
-public struct FixedLeghtArray<Element> {
+public struct FixedLengthArray<Element> {
   
   private var _buf: Buffer<Element>
   
 }
 
-extension FixedLeghtArray {
+extension FixedLengthArray {
   
   public init(repeating repeatedValue: Element, count: Int) {
     let sequence = repeatElement(repeatedValue, count: count)
@@ -15,7 +15,7 @@ extension FixedLeghtArray {
   
 }
 
-extension FixedLeghtArray: ExpressibleByArrayLiteral {
+extension FixedLengthArray: ExpressibleByArrayLiteral {
   
   public init(arrayLiteral elements: Element...) {
     _buf = Buffer(sequence: elements, count: elements.count)
@@ -23,7 +23,7 @@ extension FixedLeghtArray: ExpressibleByArrayLiteral {
   
 }
 
-extension FixedLeghtArray: Collection, MutableCollection {
+extension FixedLengthArray: Collection, MutableCollection {
   
   /// - Complexity: O(1)
   public var startIndex: Int {
@@ -55,7 +55,7 @@ extension FixedLeghtArray: Collection, MutableCollection {
   
 }
 
-extension FixedLeghtArray: BidirectionalCollection {
+extension FixedLengthArray: BidirectionalCollection {
   
   /// - Complexity: O(1)
   public func index(before i: Int) -> Int {
@@ -64,11 +64,11 @@ extension FixedLeghtArray: BidirectionalCollection {
   
 }
 
-extension FixedLeghtArray: RandomAccessCollection {
+extension FixedLengthArray: RandomAccessCollection {
   
 }
 
-extension FixedLeghtArray: Equatable where Element: Equatable {
+extension FixedLengthArray: Equatable where Element: Equatable {
   
   public static func == (lhs: Self, rhs: Self) -> Bool {
     
@@ -80,7 +80,7 @@ extension FixedLeghtArray: Equatable where Element: Equatable {
   
 }
 
-extension FixedLeghtArray: Hashable where Element: Hashable {
+extension FixedLengthArray: Hashable where Element: Hashable {
   
   public func hash(into hasher: inout Hasher) {
     for elem in self._buf.buffer {
@@ -90,15 +90,15 @@ extension FixedLeghtArray: Hashable where Element: Hashable {
   
 }
 
-extension FixedLeghtArray: Comparable where Element: Comparable {
+extension FixedLengthArray: Comparable where Element: Comparable {
   
-  public static func < (lhs: FixedLeghtArray<Element>, rhs: FixedLeghtArray<Element>) -> Bool {
+  public static func < (lhs: FixedLengthArray<Element>, rhs: FixedLengthArray<Element>) -> Bool {
     lhs._buf.buffer.lexicographicallyPrecedes(rhs._buf.buffer)
   }
 
 }
 
-private extension FixedLeghtArray {
+private extension FixedLengthArray {
   
   final class Buffer<Element> {
     
