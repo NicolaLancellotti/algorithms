@@ -23,6 +23,7 @@
 
 ## Data Structures
 - FixedLeghtArray
+- FixedLeghtQueue
 - Stack
 - MinHeap
 - Matrix
