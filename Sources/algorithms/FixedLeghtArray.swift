@@ -68,31 +68,6 @@ extension FixedLeghtArray: RandomAccessCollection {
   
 }
 
-private extension FixedLeghtArray {
-  
-  final class Buffer<Element> {
-    
-    let buffer: UnsafeMutableBufferPointer<Element>
-    
-    init<S>(sequence: S, count: Int) where S: Sequence, S.Element == Element {
-      buffer = UnsafeMutableBufferPointer(start: .allocate(capacity: count),
-                                          count: count)
-      let (_, index) = buffer.initialize(from: sequence)
-      assert(index == count)
-    }
-    
-    func copy() -> Buffer<Element> {
-      Buffer(sequence: buffer, count: buffer.count)
-    }
-    
-    deinit {
-      buffer.baseAddress?.deinitialize(count: buffer.count)
-      buffer.deallocate()
-    }
-  }
-  
-}
-
 extension FixedLeghtArray: Equatable where Element: Equatable {
   
   public static func == (lhs: Self, rhs: Self) -> Bool {
@@ -121,4 +96,29 @@ extension FixedLeghtArray: Comparable where Element: Comparable {
     lhs._buf.buffer.lexicographicallyPrecedes(rhs._buf.buffer)
   }
 
+}
+
+private extension FixedLeghtArray {
+  
+  final class Buffer<Element> {
+    
+    let buffer: UnsafeMutableBufferPointer<Element>
+    
+    init<S>(sequence: S, count: Int) where S: Sequence, S.Element == Element {
+      buffer = UnsafeMutableBufferPointer(start: .allocate(capacity: count),
+                                          count: count)
+      let (_, index) = buffer.initialize(from: sequence)
+      assert(index == count)
+    }
+    
+    func copy() -> Buffer<Element> {
+      Buffer(sequence: buffer, count: buffer.count)
+    }
+    
+    deinit {
+      buffer.baseAddress?.deinitialize(count: buffer.count)
+      buffer.deallocate()
+    }
+  }
+  
 }
