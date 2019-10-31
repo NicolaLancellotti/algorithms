@@ -22,6 +22,7 @@
 - power *base^exp* with the repeated squares method O(log(exp))
 
 ## Data Structures
+- FixedLeghtArray
 - Stack
-- Matrix
 - MinHeap
+- Matrix
