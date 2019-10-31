@@ -49,7 +49,7 @@ final class MatrixTests: XCTestCase {
     XCTAssertEqual(matrix.power(3), matrix * matrix * matrix)
   }
   
-  func test_comparable() {
+  func test_equatable() {
     do {
       let matrix = Matrix(columns: 2, values: 1, 2, 3, 4)
       XCTAssertEqual(matrix, matrix)
@@ -75,7 +75,7 @@ final class MatrixTests: XCTestCase {
     ("test_makeIdentity", test_makeIdentity),
     ("test_product", test_product),
     ("test_power", test_power),
-    ("test_comparable", test_comparable),
+    ("test_equatable", test_equatable),
     ("test_hashable", test_hashable),
   ]
   

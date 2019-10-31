@@ -30,7 +30,7 @@ final class StackTests: XCTestCase {
     XCTAssertTrue(stack.isEmpty);
   }
   
-  func test_comparable() {
+  func test_equatable() {
     do {
       var stack = Stack<Int>()
       stack.push(1)
@@ -57,7 +57,7 @@ final class StackTests: XCTestCase {
   
   static var allTests = [
     ("test_stack", test_stack),
-    ("test_comparable", test_comparable),
+    ("test_equatable", test_equatable),
     ("test_hashable", test_hashable),
   ]
   
