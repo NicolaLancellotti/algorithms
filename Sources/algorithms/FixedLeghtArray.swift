@@ -92,3 +92,33 @@ private extension FixedLeghtArray {
   }
   
 }
+
+extension FixedLeghtArray: Equatable where Element: Equatable {
+  
+  public static func == (lhs: Self, rhs: Self) -> Bool {
+    
+    for (l, r) in zip(lhs._buf.buffer, rhs._buf.buffer) where l != r   {
+      return false
+    }
+    return true
+  }
+  
+}
+
+extension FixedLeghtArray: Hashable where Element: Hashable {
+  
+  public func hash(into hasher: inout Hasher) {
+    for elem in self._buf.buffer {
+      hasher.combine(elem)
+    }
+  }
+  
+}
+
+extension FixedLeghtArray: Comparable where Element: Comparable {
+  
+  public static func < (lhs: FixedLeghtArray<Element>, rhs: FixedLeghtArray<Element>) -> Bool {
+    lhs._buf.buffer.lexicographicallyPrecedes(rhs._buf.buffer)
+  }
+
+}
