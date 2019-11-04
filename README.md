@@ -24,6 +24,7 @@
 ## Data Structures
 - SinglyLinkedList
 - FixedLengthArray 
+- Queue
 - FixedLengthQueue
 - QueueUsingStacks
 - Stack
