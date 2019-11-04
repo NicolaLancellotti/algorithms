@@ -49,12 +49,12 @@ extension FixedLengthQueue {
   
   /// - Complexity: Θ(1)
   public var isEmpty: Bool {
-    return headIndex == tailIndex && count == 0
+    headIndex == tailIndex && count == 0
   }
   
   /// - Complexity: Θ(1)
   public var isFull: Bool {
-    return headIndex == tailIndex && count != 0
+    headIndex == tailIndex && count != 0
   }
   
 }
@@ -62,7 +62,7 @@ extension FixedLengthQueue {
 extension FixedLengthQueue {
   
   private func nextIndex(_ index: Int) -> Int {
-    return (index + 1) % buffer.count
+    (index + 1) % buffer.count
   }
   
 }

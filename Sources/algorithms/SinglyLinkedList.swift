@@ -125,7 +125,7 @@ extension SinglyLinkedList: RangeReplaceableCollection {
   
   public mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C)
     where C : Collection, R : RangeExpression, Element == C.Element, Index == R.Bound {
-     
+      
       _testUniquelyReferenced()
       let range = subrange.relative(to: self)
       

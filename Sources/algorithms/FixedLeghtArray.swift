@@ -27,17 +27,17 @@ extension FixedLengthArray: Collection, MutableCollection {
   
   /// - Complexity: O(1)
   public var startIndex: Int {
-    return _buf.buffer.startIndex
+    _buf.buffer.startIndex
   }
   
   /// - Complexity: O(1)
   public var endIndex: Int {
-    return _buf.buffer.endIndex
+    _buf.buffer.endIndex
   }
   
   /// - Complexity: O(1)
   public func index(after i: Int) -> Int {
-    return _buf.buffer.index(after: i)
+    _buf.buffer.index(after: i)
   }
   
   /// - Complexity: O(1)
@@ -59,7 +59,7 @@ extension FixedLengthArray: BidirectionalCollection {
   
   /// - Complexity: O(1)
   public func index(before i: Int) -> Int {
-    return _buf.buffer.index(before: i)
+    _buf.buffer.index(before: i)
   }
   
 }
@@ -95,7 +95,7 @@ extension FixedLengthArray: Comparable where Element: Comparable {
   public static func < (lhs: FixedLengthArray<Element>, rhs: FixedLengthArray<Element>) -> Bool {
     lhs._buf.buffer.lexicographicallyPrecedes(rhs._buf.buffer)
   }
-
+  
 }
 
 private extension FixedLengthArray {

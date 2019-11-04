@@ -10,7 +10,7 @@ extension StackUsingList {
   
   /// - Complexity: O(1)
   public var isEmpty: Bool {
-    return list.isEmpty
+    list.isEmpty
   }
   
   /// - Complexity: O(1)

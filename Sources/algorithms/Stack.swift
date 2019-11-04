@@ -10,13 +10,13 @@ extension Stack {
   
   /// - Complexity: O(1)
   public var isEmpty: Bool {
-    return buffer.isEmpty
+    buffer.isEmpty
   }
   
   /// - Complexity: O(1)
   @discardableResult
   public mutating func pop() -> Element? {
-    return buffer.popLast() // constant amortized cost
+    buffer.popLast() // constant amortized cost
   }
   
   /// - Complexity: O(1)
@@ -31,5 +31,5 @@ extension Stack: Equatable where Element: Equatable {
 }
 
 extension Stack: Hashable where Element: Hashable {
-
+  
 }
