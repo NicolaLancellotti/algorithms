@@ -28,5 +28,6 @@
 - FixedLengthQueue
 - QueueUsingStacks
 - Stack
+- StackUsingList
 - MinHeap
 - Matrix
