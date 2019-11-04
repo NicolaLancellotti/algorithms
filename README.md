@@ -22,12 +22,17 @@
 - power *base^exp* with the repeated squares method O(log(exp))
 
 ## Data Structures
+### Lists
+- FixedLengthArray
 - SinglyLinkedList
-- FixedLengthArray 
+### Queues 
 - Queue
 - FixedLengthQueue
 - QueueUsingStacks
+### Stacks
 - Stack
 - StackUsingList
+### Priority Queues
 - MinHeap
+### Math
 - Matrix
