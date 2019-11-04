@@ -9,6 +9,7 @@ public struct QueueUsingStacks<Element> {
 
 extension QueueUsingStacks {
   
+  /// - Complexity: O(1)
   public var isEmpty: Bool {
     return stackEnqueue.isEmpty && stackDequeue.isEmpty
   }
