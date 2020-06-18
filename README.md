@@ -38,3 +38,5 @@
 - Matrix
 ### Graphs 
 - GraphWithAdjacencyMatrix
+  - isUniversalSink
+  - universalSink
