@@ -41,6 +41,6 @@
   - is universal sink O(V)
   - universal sink O(V)
 - Undirect graph with adjacency list
- - DFS O(V + E)
- - connected components O(V + E)
- - DFS tree O(V + E)
+  - DFS O(V + E)
+  - connected components O(V + E)
+  - DFS tree O(V + E)
