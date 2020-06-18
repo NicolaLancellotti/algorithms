@@ -40,4 +40,7 @@
 - DirectGraphWithAdjacencyMatrix
   - isUniversalSink O(V)
   - universalSink O(V)
-- UndirectGraphWithAdjacencyList  
+- UndirectGraphWithAdjacencyList
+ - dfs O(V + E)
+ - connectedComponents O(V + E)
+ - dfsTree O(V + E)

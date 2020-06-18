@@ -53,7 +53,7 @@ extension UndirectGraphWithAdjacencyList {
     public func hash(into hasher: inout Hasher) {
       hasher.combine(ObjectIdentifier(self))
     }
-  
+    
   }
   
   public static func makeNode(info: Element) -> Node<Element> {
@@ -83,6 +83,79 @@ extension UndirectGraphWithAdjacencyList {
         }
       }
     }
+  }
+  
+}
+
+//MARK: - DFS
+
+extension UndirectGraphWithAdjacencyList {
+  
+  public class DFSContext {
+    public var onVisitNode: ((Node<Element>) -> Void)?
+    public var didVisitNode: ((Node<Element>) -> Void)?
+    public var onVisitChild: ((Node<Element>, Node<Element>) -> Void)?
+    public var onVisitNewRoot: ((Node<Element>) -> Void)?
+    
+    public init() {}
+  }
+  
+  public func makeDFSContext() -> DFSContext {
+    DFSContext()
+  }
+  
+  /// - Complexity: O(V + E)
+  public func dfs(contex: DFSContext, root: Node<Element>? = nil) {
+    var visited = [Bool](repeating: false, count: nodes.count)
+    
+    func dfs(node: Node<Element>) {
+      visited[node.index] = true
+      contex.onVisitNode?(node)
+      for child in node.adjacencyList where !visited[child.index] {
+        contex.onVisitChild?(node, child)
+        dfs(node: child)
+      }
+      contex.didVisitNode?(node)
+    }
+    
+    for node in root != nil ? [root!] : nodes where !visited[node.index] {
+      contex.onVisitNewRoot?(node)
+      dfs(node: node)
+    }
+  }
+  
+  /// - Complexity: O(V + E)
+  public func connectedComponents() -> Set<Set<Node<Element>>> {
+    var connectedComponents = Set<Set<Node<Element>>>()
+    var current = Set<Node<Element>>()
+    
+    let contex = DFSContext()
+    contex.onVisitNode = { current.insert($0) }
+    contex.onVisitNewRoot = { _ in
+      if !current.isEmpty {
+        connectedComponents.insert(current)
+      }
+      current = Set<Node<Element>>()
+    }
+    dfs(contex: contex)
+    
+    if !current.isEmpty {
+      connectedComponents.insert(current)
+    }
+    
+    return connectedComponents
+  }
+  
+  /// Returns a dictionary where each key is a node its value is its parent
+  /// - Complexity: O(V + E)
+  public func dfsTree(root: Node<Element>?) -> [Node<Element> : Node<Element>] {
+    var parents = [Node<Element> : Node<Element>]()
+    
+    let contex = DFSContext()
+    contex.onVisitChild = {parent, node in parents[node] = parent }
+    
+    dfs(contex: contex, root: root)
+    return parents
   }
   
 }

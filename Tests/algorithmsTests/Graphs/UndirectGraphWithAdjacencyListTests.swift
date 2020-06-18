@@ -29,9 +29,77 @@ final class UndirectGraphWithAdjacencyListTests: XCTestCase {
     XCTAssertNil(graph)
   }
   
+  func test_dfs() {
+    let nodeA = UndirectGraphWithAdjacencyList.makeNode(info: "A")
+    let nodeB = UndirectGraphWithAdjacencyList.makeNode(info: "B")
+    let nodeC = UndirectGraphWithAdjacencyList.makeNode(info: "C")
+    let nodeD = UndirectGraphWithAdjacencyList.makeNode(info: "D")
+    let nodeE = UndirectGraphWithAdjacencyList.makeNode(info: "E")
+    let graph = UndirectGraphWithAdjacencyList(nodes: [nodeA, nodeB, nodeC, nodeD, nodeE])!
+    
+    /*
+     D - B - C
+         |
+         A
+     E
+     */
+    graph[nodeA, nodeB] = true
+    graph[nodeB, nodeC] = true
+    graph[nodeB, nodeD] = true
+    
+    do {
+      var visited = [UndirectGraphWithAdjacencyList<String>.Node<String>]()
+      let contex = graph.makeDFSContext()
+      contex.onVisitNode = { visited.append($0) }
+      graph.dfs(contex: contex, root: nodeA)
+      XCTAssertEqual(visited, [nodeA, nodeB, nodeC, nodeD])
+    }
+    
+    do {
+      var visited = [UndirectGraphWithAdjacencyList<String>.Node<String>]()
+      let contex = graph.makeDFSContext()
+      contex.onVisitNode = { visited.append($0) }
+      graph.dfs(contex: contex)
+      XCTAssertEqual(visited, [nodeA, nodeB, nodeC, nodeD, nodeE])
+    }
+  }
+  
+  func test_connectedComponents() {
+    let nodeA = UndirectGraphWithAdjacencyList.makeNode(info: "A")
+    let nodeB = UndirectGraphWithAdjacencyList.makeNode(info: "B")
+    let nodeC = UndirectGraphWithAdjacencyList.makeNode(info: "C")
+    let graph = UndirectGraphWithAdjacencyList(nodes: [nodeA, nodeB, nodeC])!
+    
+    graph[nodeA, nodeB] = true
+    
+    let connectedComponents = graph.connectedComponents()
+    let set = Set([
+      Set([nodeA, nodeB]),
+      Set([nodeC])
+    ])
+    XCTAssertEqual(connectedComponents, set)
+  }
+  
+  func test_dfsTree() {
+    let nodeA = UndirectGraphWithAdjacencyList.makeNode(info: "A")
+    let nodeB = UndirectGraphWithAdjacencyList.makeNode(info: "B")
+    let nodeC = UndirectGraphWithAdjacencyList.makeNode(info: "C")
+    let graph = UndirectGraphWithAdjacencyList(nodes: [nodeA, nodeB, nodeC])!
+    
+    graph[nodeA, nodeB] = true
+    
+    let dfsTree = graph.dfsTree(root: nodeA)
+    XCTAssertNil(dfsTree[nodeA])
+    XCTAssertEqual(dfsTree[nodeB], nodeA)
+    XCTAssertNil(dfsTree[nodeC])
+  }
+  
   static var allTests = [
     ("test_arches", test_arches),
+    ("test_dfs", test_dfs),
     ("test_init_graph", test_init_graph),
+    ("test_connectedComponents", test_connectedComponents),
+    ("test_dfsTree", test_dfsTree),
   ]
   
 }
