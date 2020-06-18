@@ -4,6 +4,8 @@ public struct Stack<Element> {
   
   private var buffer = [Element]()
   
+  public init() {}
+  
 }
 
 extension Stack {

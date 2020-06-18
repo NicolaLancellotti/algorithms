@@ -4,6 +4,8 @@ public struct StackUsingList<Element> {
   
   private var list = SinglyLinkedList<Element>()
   
+  public init() {}
+  
 }
 
 extension StackUsingList {

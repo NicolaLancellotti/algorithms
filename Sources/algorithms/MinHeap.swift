@@ -46,7 +46,7 @@ extension MinHeap {
   }
   
   /// - Complexity: O(lon(n))
-  mutating func remove(at index: Int) -> Element {
+  mutating public func remove(at index: Int) -> Element {
     precondition(index >= buffer.startIndex && index < buffer.endIndex, "TODO")
     
     let value = buffer[index].elem

@@ -11,7 +11,7 @@ public struct FixedLengthQueue<Element> {
 
 extension FixedLengthQueue {
   
-  init(count: Int) {
+  public init(count: Int) {
     precondition(count > 0, "count must be greater than 0")
     buffer = FixedLengthArray<Element?>(repeating: nil, count: count)
   }

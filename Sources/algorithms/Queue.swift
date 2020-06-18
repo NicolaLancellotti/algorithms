@@ -4,6 +4,7 @@ public struct Queue<Element> {
   
   private var list = SinglyLinkedList<Element>()
   
+  public init() {}
 }
 
 extension Queue {

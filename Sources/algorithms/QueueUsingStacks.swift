@@ -5,6 +5,7 @@ public struct QueueUsingStacks<Element> {
   private var stackEnqueue = Stack<Element>()
   private var stackDequeue = Stack<Element>()
   
+  public init() {}
 }
 
 extension QueueUsingStacks {

@@ -70,11 +70,11 @@ extension Matrix where T: Numeric {
 
 extension Matrix where T: Numeric {
   
-  static func *= (lhs: inout Self, rhs: Self) {
+  static public func *= (lhs: inout Self, rhs: Self) {
     lhs = lhs * rhs
   }
   
-  static func * (lhs: Self, rhs: Self) -> Self {
+  static public func * (lhs: Self, rhs: Self) -> Self {
     precondition(lhs.columns == rhs.rows)
     let rows = lhs.rows
     let columns = rhs.columns

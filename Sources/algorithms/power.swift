@@ -1,10 +1,10 @@
 import Foundation
 
-enum Math {
+public enum Math {
   
   /// Compute the power: *base^exp* with the repeated squares method
   /// - Complexity: O(log(exp))
-  static func power<T: FloatingPoint, E: BinaryInteger>(base: T, exp: E) -> T {
+  public static func power<T: FloatingPoint, E: BinaryInteger>(base: T, exp: E) -> T {
     switch exp {
       case 0:
         return 1
@@ -19,7 +19,7 @@ enum Math {
   
   /// Compute the power: *base^exp* with the repeated squares method
   /// - Complexity: O(log(exp))
-  static func power<T: BinaryInteger, E: UnsignedInteger>(base: T, exp: E) -> T {
+  public static func power<T: BinaryInteger, E: UnsignedInteger>(base: T, exp: E) -> T {
     switch exp {
       case 0:
         return 1

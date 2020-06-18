@@ -64,7 +64,7 @@ extension SinglyLinkedList {
   }
   
   /// - Complexity: O(n)
-  mutating func reverse() {
+  mutating public func reverse() {
     _testUniquelyReferenced()
     _buf.reverse()
   }

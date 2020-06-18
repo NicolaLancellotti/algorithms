@@ -1,5 +1,5 @@
 import XCTest
-@testable import algorithms
+import algorithms
 
 final class QueueTests: XCTestCase {
   

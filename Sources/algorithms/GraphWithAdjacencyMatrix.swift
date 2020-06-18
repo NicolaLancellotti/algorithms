@@ -37,7 +37,7 @@ extension GraphWithAdjacencyMatrix {
   /// The setter sets if there is  an arch from `nodeA` to `nodeB`
   /// The getter returns `true` if there is an arch from `nodeA` to `nodeB`, `false` otherwise.
   /// - Complexity: O(1)
-  subscript(nodeA: Node<Element>, nodeB: Node<Element>) -> Bool {
+  public subscript(nodeA: Node<Element>, nodeB: Node<Element>) -> Bool {
     get { adjacencyMatrix[nodeA.index, nodeB.index] }
     set { adjacencyMatrix[nodeA.index, nodeB.index] = newValue }
   }
