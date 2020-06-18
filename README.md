@@ -36,3 +36,5 @@
 - MinHeap
 ### Math
 - Matrix
+### Graphs 
+- GraphWithAdjacencyMatrix
