@@ -23,24 +23,24 @@
 
 ## Data Structures
 ### Lists
-- FixedLengthArray
-- SinglyLinkedList
+- Fixed length array
+- Singly linked list
 ### Queues 
 - Queue
-- FixedLengthQueue
-- QueueUsingStacks
+- Fixed length queue
+- Queue using stacks
 ### Stacks
 - Stack
-- StackUsingList
+- Stack using list
 ### Priority Queues
-- MinHeap
+- Min heap
 ### Math
 - Matrix
 ### Graphs 
-- DirectGraphWithAdjacencyMatrix
-  - isUniversalSink O(V)
-  - universalSink O(V)
-- UndirectGraphWithAdjacencyList
- - dfs O(V + E)
- - connectedComponents O(V + E)
- - dfsTree O(V + E)
+- Direct graph with adjacency matrix
+  - is universal sink O(V)
+  - universal sink O(V)
+- Undirect graph with adjacency list
+ - DFS O(V + E)
+ - connected components O(V + E)
+ - DFS tree O(V + E)
