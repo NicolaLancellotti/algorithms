@@ -37,6 +37,6 @@
 ### Math
 - Matrix
 ### Graphs 
-- GraphWithAdjacencyMatrix
-  - isUniversalSink
-  - universalSink
+- DirectGraphWithAdjacencyMatrix
+  - isUniversalSink O(V)
+  - universalSink O(V)
